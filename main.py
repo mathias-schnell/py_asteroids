@@ -36,7 +36,7 @@ def main():
     # create the player
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, PLAYER_RADIUS)
     ast_field = AsteroidField()
-    
+
     # the game loop
     while True:
 
@@ -56,10 +56,16 @@ def main():
         # update all the updatable objects
         for obj in updatable:
             obj.update(dt)
-        
+
         # draw all the drawable objects
         for obj in drawable:
             obj.draw(screen)
+            # check for collision with the player
+            if obj != player and obj.collision_check(player):
+                print("Game over!")
+                pygame.quit()
+                sys.exit()
+                return
 
         # refresh the screen
         pygame.display.flip()
