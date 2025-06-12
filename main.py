@@ -74,7 +74,8 @@ def main():
 
             for shot in shots:
                 if ast.collision_check(shot):
-                    ast.kill()
+                    ast.split()
+                    shot.kill()
 
         # refresh the screen
         pygame.display.flip()
